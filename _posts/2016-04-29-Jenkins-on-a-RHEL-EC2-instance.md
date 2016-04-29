@@ -109,4 +109,8 @@ Starting jenkins (via systemctl):                          [  OK  ]
 
 Now you can browse to port 8080 on your instance and you should see your Jenkins server!
 
+After you unlock the Jenkins server, the default packages are installed and updated, and you login, you'll see a page like this:
+
+![Jenkins home screen](https://danbaehr.github.io/images/jenkins_home_screen.png)
+
 
