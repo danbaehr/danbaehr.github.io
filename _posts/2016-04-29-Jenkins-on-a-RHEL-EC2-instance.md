@@ -21,13 +21,13 @@ Now find the security group associated with your instance and change the inbound
 
 Alright, sweet, now you should be able to ssh to your instance as the ec2-user using the public DNS name and your key file (creating a new user is probably a good idea though). If you get an error about the permissions of the key file then do a chmod to set it to 400. Now you can start installing Jenkins. 
 
-First up is to add the Jenkins repo for yum. 'wget' isn't installed by default in RHEL 7 apparently so grab that first. 
+First up is to add the Jenkins repo for yum. 'wget' isn't installed by default in RHEL 7 apparently so install that quickly. 
 
 ```bash
-[ec2-user@ip-172-31-17-2 ~]$ sudo wget -O /etc/yum.repos.d/jenkins.repo [ec2-user@ip-172-31-17-2 ~]$ 
+[ec2-user@ip-x ~]$ sudo wget -O /etc/yum.repos.d/jenkins.repo 
 sudo: wget: command not found
 
-[ec2-user@ip-172-31-17-2 ~]$ sudo yum install wget
+[ec2-user@ip-x ~]$ sudo yum install wget
 Loaded plugins: amazon-id, rhui-lb, search-disabled-repos
 ...
 Downloading packages:
@@ -44,5 +44,69 @@ Installed:
 
 Complete! 
 ```
+
+Now you can get the Jenkins repo.
+
+```bash
+[ec2-user@ip-x ~]$ sudo wget -O /etc/yum.repos.d/jenkins.repo http://pkg.jenkins-ci.org/redhat/jenkins.repo
+--2016-04-25 17:02:01--  http://pkg.jenkins-ci.org/redhat/jenkins.repo
+Resolving pkg.jenkins-ci.org (pkg.jenkins-ci.org)... 52.91.151.148
+Connecting to pkg.jenkins-ci.org (pkg.jenkins-ci.org)|52.91.151.148|:80... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 75
+Saving to: ‘/etc/yum.repos.d/jenkins.repo’
+
+100%[================================================================================================>] 75          --.-K/s   in 0s      
+
+2016-04-25 17:02:02 (12.9 MB/s) - ‘/etc/yum.repos.d/jenkins.repo’ saved [75/75]
+
+[ec2-user@ip-x ~]$ sudo rpm --import https://jenkins-ci.org/redhat/jenkins-ci.org.key
+```
+
+and finally install Jenkins.
+
+```bash
+[ec2-user@ip-172-31-17-2 ~]$ sudo yum install jenkins
+Loaded plugins: amazon-id, rhui-lb, search-disabled-repos
+jenkins                                                                                                            | 2.9 kB  00:00:00     
+jenkins/primary_db                                                                                                 |  81 kB  00:00:00     
+...
+Total download size: 63 M
+Installed size: 63 M
+Is this ok [y/d/N]: y
+Downloading packages:
+jenkins-2.0-1.1.noarch.rpm                                                                                         |  63 MB  00:00:07     
+Running transaction check
+Running transaction test
+Transaction test succeeded
+Running transaction
+  Installing : jenkins-2.0-1.1.noarch                                                                                                 1/1 
+  Verifying  : jenkins-2.0-1.1.noarch                                                                                                 1/1 
+
+Installed:
+  jenkins.noarch 0:2.0-1.1                                                                                                                
+
+Complete!
+```
+
+Jenkins needs Java so lets get that too.
+
+```bash
+[ec2-user@ip-172-31-17-2 ~]$ sudo yum install java
+...
+Installed:
+  java-1.8.0-openjdk.x86_64 1:1.8.0.91-0.b14.el7_2                                                                                        
+
+Complete!
+```
+
+Start the Jenkins daemon. 
+
+```bash
+[ec2-user@ip-172-31-17-2 ~]$ sudo service jenkins start
+Starting jenkins (via systemctl):                          [  OK  ]
+```
+
+Now you can browse to port 8080 on your instance and you should see your Jenkins server!
 
 
