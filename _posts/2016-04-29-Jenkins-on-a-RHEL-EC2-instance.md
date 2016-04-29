@@ -66,7 +66,7 @@ Saving to: ‘/etc/yum.repos.d/jenkins.repo’
 and finally install Jenkins.
 
 ```bash
-[ec2-user@ip-172-31-17-2 ~]$ sudo yum install jenkins
+[ec2-user@ip-x ~]$ sudo yum install jenkins
 Loaded plugins: amazon-id, rhui-lb, search-disabled-repos
 jenkins                                                                                                            | 2.9 kB  00:00:00     
 jenkins/primary_db                                                                                                 |  81 kB  00:00:00     
@@ -92,7 +92,7 @@ Complete!
 Jenkins needs Java so lets get that too.
 
 ```bash
-[ec2-user@ip-172-31-17-2 ~]$ sudo yum install java
+[ec2-user@ip-x ~]$ sudo yum install java
 ...
 Installed:
   java-1.8.0-openjdk.x86_64 1:1.8.0.91-0.b14.el7_2                                                                                        
@@ -103,7 +103,7 @@ Complete!
 Start the Jenkins daemon. 
 
 ```bash
-[ec2-user@ip-172-31-17-2 ~]$ sudo service jenkins start
+[ec2-user@ip-x ~]$ sudo service jenkins start
 Starting jenkins (via systemctl):                          [  OK  ]
 ```
 
