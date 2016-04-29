@@ -8,7 +8,8 @@ So I set about to learn how to use the CI tool Jenkins for automated build and t
 
 First thing I did was to create an EC2 RHEL instance. I specifically wanted to get it up and running on RHEL so I chose not to use the Amazon Linux instance, which I think is Ubuntu based. 
 
-[[images/micro_instance.png]]
+![Image of AWS micro instance](https://danbaehr.github.io/images/micro_instance.png)
+
 
 Go through and choose all the default options and then create and launch your instance. You should ultimately see your new RHEL instance up and running. You should also have downloaded a key pair file to use later when connecting to your VM.
 
