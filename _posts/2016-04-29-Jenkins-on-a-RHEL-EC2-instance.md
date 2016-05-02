@@ -113,4 +113,4 @@ After you unlock the Jenkins server, the default packages are installed and upda
 
 ![Jenkins home screen](https://danbaehr.github.io/images/jenkins_home_screen.png)
 
-
+Jenkins is ready for jobs! Next we'll configure a new project and have it do some automated build and test...
