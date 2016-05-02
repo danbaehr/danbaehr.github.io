@@ -10,12 +10,11 @@ For the purposes of this post (and since it seems like a typical setup) I'll use
 Jenkins job at a repo in my github repository and have it automatically do a build and test anytime we update the repo. I've been toying around 
 with AMQP and the RabbitMQ implementation so I'll use the Python client library "Pika" as our repo. 
 
-The latest Jenkins server already has the git plugin installed but if not, add it. Also add the Cobertura and Violations plugins. Then create 
-your new project.
+The latest Jenkins server already has the git plugin installed but if not, add it. Also add the Cobertura and Violations plugins. Then create your new project.
 
-On the configuration page for the project go to the Source Code Management tab and select Git. For your Repository URL point it at your github repo.
+On the configuration page for the project go to the Source Code Management tab and select Git. For your Repository URL point it at your github repo. I had to install git here with yum.
 
-![Image of SCM screen](https://danbaehr.github.io/images/SCM_screen.png)
+![Image of SCM screen](https://danbaehr.github.io/images/SCM_screen2.png)
 
 Now we need to set up our build trigger to watch the repo for changes and start our build whenever something happens. Check "Poll SCM" and
 for the schedule add *****. It uses crontab formatting. 
