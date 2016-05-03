@@ -66,6 +66,7 @@ Ok, we're ready to start installing packages. We want to install each of the fol
 * tornado
 
 Once those are installed we'll install and start the rabbitMQ server.
+
 ```bash
 wget  https://www.rabbitmq.com/releases/rabbitmq-server/v3.6.1/rabbitmq-server-3.6.1-1.noarch.rpm’
 sudo rpm --import https://www.rabbitmq.com/rabbitmq-signing-key-public.asc
