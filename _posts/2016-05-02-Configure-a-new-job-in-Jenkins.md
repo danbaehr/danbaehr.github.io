@@ -24,7 +24,7 @@ for the schedule add *****. It uses crontab formatting.
 We need to define what is actually going to be done when a build is triggered. We do that via the build tab. Select "Execute shell" and add the folowing to the command.
 ```bash
 PYTHONPATH=''
-nosetests --with-xunit --all-modules --traverse-namespace --with-coverage --cover-package=my_first_project --cover-inclusive
+nosetests --with-xunit --all-modules --traverse-namespace --with-coverage --cover-package=pika --cover-inclusive
 ```
 You can look at the man page for nosetests to understand each argument here but the basic idea is that we're running nose to scan all modules for tests and generate a coverage report using the coverage module. 
 
@@ -55,7 +55,7 @@ Now we can install pip:
 ```bash
 sudo yum install python-pip
 ```
-Ok, we're ready to start installing packages. We want to install each of the following packages using pip (sudo pip install <package name>).
+Ok, we're ready to start installing packages. We want to install each of the following packages using pip (sudo pip install package_name).
 
 * nose
 * coverage
@@ -80,5 +80,28 @@ You'll see your build start on the main job page.
 And you can watch the actual console output to see what the build is currently doing or to see why it failed. 
 ![Image of build console output](https://danbaehr.github.io/images/build_console_output.png)
 
+If we did everything right then everything should pass and the test should be marked blue. Git checked out our repo, ran nosetests to execute all the unit tests available in pika, and generated a code overage report using the coverage module. 
+
+Notice when you look at your build status that you aren't being shown much yet. It's showing a basic pass/fail status. We can improve that by adding in a couple more build steps.
+
+We'll add in pylint and we'll display our coverage report. Add the following to the build steps to the job and trigger a new build again.
+```bash
+pylint -f parseable -d I0011,R0801 pika | tee pylint.out
+python -m coverage xml --include=pika*
+```
+The -d flag to pylint simply disables the categories with those IDs.
+
+Now we need to tell Jenkins to interpret the results we've generated and display them for each build.
+
+Go to the "Post-build Actions" tab. Add a new "Publish Cobertura Coverage Report" action. Add "coverage.xml" to the report pattern box. 
+![Image of Cobertura](https://danbaehr.github.io/images/cobertura.png)
+
+Next, add a "Publish JUnit test result report" action and add "nosetests.xml" in the "Test report XMLs" field.
+![Image of Junit](https://danbaehr.github.io/images/junit.png)
+
+Lastly, add a "Report Violations" action. Add "**/pylint.out" to the pylint box in the "XML filename pattern" field.
+![Image of Violations](https://danbaehr.github.io/images/violations.png)
+
+Click save and trigger a new build! Once the build is complete you should see new output on the build details page and the main job page. If you click the "Cobertura Coverage Report" link on the build status page you'll see the detailed code coverage report that was generated. 
 
 
