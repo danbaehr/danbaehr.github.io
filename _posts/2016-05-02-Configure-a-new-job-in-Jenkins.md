@@ -26,6 +26,7 @@ We need to define what is actually going to be done when a build is triggered. W
 PYTHONPATH=''
 nosetests --with-xunit --all-modules --traverse-namespace --with-coverage --cover-package=pika --cover-inclusive
 ```
+
 You can look at the man page for nosetests to understand each argument here but the basic idea is that we're running nose to scan all modules for tests and generate a coverage report using the coverage module. 
 
 If we trigger a build right now (by making a change in our git repo) we would see the build run and fail, but we would see it start! The reasons it would fail is because we're missing a bunch of packages and we don't have a rabbitMQ server running. So let's focus on that for a bit.
