@@ -97,11 +97,11 @@ Go to the "Post-build Actions" tab. Add a new "Publish Cobertura Coverage Report
 ![Image of Cobertura](https://danbaehr.github.io/images/cobertura.png)
 
 Next, add a "Publish JUnit test result report" action and add "nosetests.xml" in the "Test report XMLs" field.
-![Image of Junit](https://danbaehr.github.io/images/junit.png)
+![Image of junit](https://danbaehr.github.io/images/junit.png)
 
 Lastly, add a "Report Violations" action. Add "**/pylint.out" to the pylint box in the "XML filename pattern" field.
 ![Image of Violations](https://danbaehr.github.io/images/violations.png)
 
 Click save and trigger a new build! Once the build is complete you should see new output on the build details page and the main job page. If you click the "Cobertura Coverage Report" link on the build status page you'll see the detailed code coverage report that was generated. 
 
-
+![Image of code coverage report](https://danbaehr.github.io/images/code_coverage_report.png)
