@@ -74,10 +74,7 @@ sudo service rabbitmq-server start
 
 Alright, the rabbitMQ server is running, which pika will need, and all the needed python packages are installed so let's trigger a build. Touch a file in the repo and a new build will start. 
 
-You'll see your build start on the main job page.
-![Image of build running](https://danbaehr.github.io/images/build_running.png)
-
-And you can watch the actual console output to see what the build is currently doing or to see why it failed. 
+You'll see your build start on the main job page and you can watch the actual console output to see what the build is currently doing or to see why it failed. 
 ![Image of build console output](https://danbaehr.github.io/images/build_console_output.png)
 
 If we did everything right then everything should pass and the test should be marked blue. Git checked out our repo, ran nosetests to execute all the unit tests available in pika, and generated a code overage report using the coverage module. 
