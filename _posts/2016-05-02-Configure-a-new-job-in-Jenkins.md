@@ -22,6 +22,7 @@ for the schedule add *****. It uses crontab formatting.
 ![Image of build triggers](https://danbaehr.github.io/images/build_triggers.png)
 
 We need to define what is actually going to be done when a build is triggered. We do that via the build tab. Select "Execute shell" and add the folowing to the command.
+
 ```bash
 PYTHONPATH=''
 nosetests --with-xunit --all-modules --traverse-namespace --with-coverage --cover-package=pika --cover-inclusive
